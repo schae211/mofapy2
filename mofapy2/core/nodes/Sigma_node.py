@@ -759,6 +759,7 @@ class Sigma_Node(Sigma_Node_base):
             if rankx is None:
                 rankx = 1
             self.kronecker = False
+            # how could this code not result in a shape mismatch? I don't get it
             #self.kronecker = np.all(
             #    [
             #        np.all(
@@ -767,7 +768,7 @@ class Sigma_Node(Sigma_Node_base):
             #        )
             #        for g in range(self.G)
             #    ]
-            )
+            #)
             self.initKg(rank=rankx, spectral_decomp=self.kronecker)
         else:
             # all samples are modelled jointly in the covariate kernel
