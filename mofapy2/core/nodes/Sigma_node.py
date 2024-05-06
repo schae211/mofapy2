@@ -828,19 +828,21 @@ class Sigma_Node_sparse(Sigma_Node_base):
             self.G = len(self.groups)  # number of groups
             if rankx is None:
                 rankx = 1
-            self.kronecker = np.all(
-                [
-                    np.all(
-                        self.sample_cov_transformed[self.idx_inducing][
-                            self.groupsidx == 0
-                        ]
-                        == self.sample_cov_transformed[self.idx_inducing][
-                            self.groupsidx == g
-                        ]
-                    )
-                    for g in range(self.G)
-                ]
-            )
+            # same as above
+            self.kronecker = False
+            #self.kronecker = np.all(
+            #    [
+            #        np.all(
+            #            self.sample_cov_transformed[self.idx_inducing][
+            #                self.groupsidx == 0
+            #            ]
+            #            == self.sample_cov_transformed[self.idx_inducing][
+            #                self.groupsidx == g
+            #            ]
+            #        )
+            #        for g in range(self.G)
+            #    ]
+            #)
             self.initKg(rank=rankx, spectral_decomp=self.kronecker)
         else:
             # all samples are modelled jointly in the covariate kernel
